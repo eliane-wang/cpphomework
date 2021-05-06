@@ -16,13 +16,7 @@ hasht HashT;
 
 int main() {
   /* testing stuff*/
-  char fn[20] = "kylie";
-  char* f = new char[20];
-  memcpy(f, fn, strlen(fn));
-  HashT.add(f, (char*)("jenner"), 1, 4.0);
-  HashT.print();
-  HashT.del(f);
-  cout << endl;
+  
   /*==============================*/
   
   char command[7];
@@ -53,10 +47,10 @@ int main() {
     }
     //DELETE
     else if (strcmp(command, "DELETE") == 0) {
-      cout << "Student (first) name to delete: " << endl;
-      char* fname = new char[20];
-      cin >> fname;
-      HashT.del(fname);
+      cout << "Student id to delete: " << endl;
+      int newid;
+      cin >> newid;
+      HashT.del(newid);
     }
     //QUIT
     else if (strcmp(command, "QUIT") == 0) {
