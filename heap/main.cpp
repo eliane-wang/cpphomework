@@ -5,14 +5,18 @@
 
 using namespace std;
 
-void print(int* heap, int maxSize);
+void printArr(int* heap, int maxSize);
+void print(int* heap, int i, int level);
 void heapify(int* heap, int maxSize, int i);
 void heapSort(int* heap, int maxSize);
 
 int main() {
   int maxSize = 101;
   int* heap = new int[maxSize];
-  int indexCount = 1;
+  for (int i = 0; i < maxSize; i++) {
+    heap[i] = 0;
+  }
+  int indexCount = 0;
   char command[7];
   bool running = true;
 
@@ -53,26 +57,44 @@ int main() {
       }
     }
     cout << endl;
-    heapSort(heap,maxSize);
-    print(heap,maxSize);
+    heapSort(heap,indexCount);
+    printArr(heap,maxSize);
+    cout << endl;
+    
+    print(heap,0,0);
+    
     cout << endl;
   }
 }
 
 
-void print(int* heap, int maxSize) {
-  cout << endl << "Heap represented as an array:" << endl << endl;
+void printArr(int* heap, int maxSize) {
+  cout << endl << "Array: " << endl << endl;
   for (int i = 0; i < maxSize; i++) {
-    if (heap[i] != 0) { //within range
+    //if (heap[i] != 0) { //within range
       cout << heap[i] << " ";
-    }
+      //}
   }
 }
 
+
+//prints tree 
+void print(int* heap, int i, int level) {
+  if (heap[i] != 0) {
+  level++;
+  print(heap,i*2+2,level); //right
+  cout << endl;
+  for (int i = 1; i < level; i++) {
+    cout << "\t";
+  }
+  cout << heap[i];
+  print(heap,i*2+1,level); //left
+  }
+}
 void heapify(int* heap, int maxSize, int i /*root*/) { //https://www.geeksforgeeks.org/heap-sort/
   int largest = i;
-  int l = 2*i+1;
-  int r = 2*i+2;
+  int l = 2*i+1;//left
+  int r = 2*i+2;//right
   if (l<maxSize && heap[l] > heap[largest]) {
     largest = l;
   }
@@ -88,8 +110,5 @@ void heapify(int* heap, int maxSize, int i /*root*/) { //https://www.geeksforgee
 void heapSort(int* heap, int maxSize) {
   for (int i = maxSize/2-1; i >= 0; i--) {
     heapify(heap,maxSize,i);
-  }
-  for (int i = maxSize-1; i>0; i--) {
-    heapify(heap,i,0);
   }
 }
