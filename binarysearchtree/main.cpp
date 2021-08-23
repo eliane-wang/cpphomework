@@ -19,7 +19,7 @@ struct Node{
 void add(Node* &node, int data);
 void print(Node* node, int level);
 void search(Node* root, int data);
-struct Node* del(Node* root, int data);
+struct Node* del(Node* &root, int data);
 
 int main() {
   char command[8]; //commands
@@ -158,7 +158,7 @@ void print(Node* node, int level) {
 }
 
 //deletes a specific number from the tree
-struct Node* del(Node* root, int data) { //reference: https://www.youtube.com/watch?v=gcULXE7ViZw
+struct Node* del(Node* &root, int data) { //reference: https://www.youtube.com/watch?v=gcULXE7ViZw
   if (root == NULL) { //empty
     return root;
   }
