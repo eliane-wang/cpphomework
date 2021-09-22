@@ -231,17 +231,16 @@ void findShortestPath(vertex** vertexList, int adjacencyMatrix[20][20]) {
     visited[m] = true;
     for (int i = 0; i < 20; i++) {
       if (!visited[i] && adjacencyMatrix[m][i] && distance[m] != 2147483647 && distance[m] + adjacencyMatrix[m][i] < distance[i]) { //updates distance calculation
-	  distance[i] = distance[m]+adjacencyMatrix[m][i];
-	}
+	distance[i] = distance[m]+adjacencyMatrix[m][i];
       }
     }
   }
-if (distance[terminalIndex] != 0 && distance[terminalIndex] != 2147483647) { //output the shortest path
-  cout << "Shortest Path: " << distance[terminalIndex] << endl;
- }
- else { //not found
-   cout << "Path doesn't exist." << endl;
- }
+  if (distance[terminalIndex] != 0 && distance[terminalIndex] != 2147483647) { //output the shortest path
+    cout << "Shortest Path: " << distance[terminalIndex] << endl;
+  }
+  else { //not found
+    cout << "Path doesn't exist." << endl;
+  }
 }
 
 //returns the minimum distance traveled
